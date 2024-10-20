@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Brinquedos</title>
+</head>
+<body>
+    <h1>Lista de Brinquedos</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descricao</th>
+                <th>Preco</th>
+                <th>Categoria</th>
+                <th>Imagem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="brinquedoDto : ${brinquedos}">
+                <td th:text="${brinquedoDto.brinquedo.id}"></td>
+                <td th:text="${brinquedoDto.brinquedo.nome}"></td>
+                <td th:text="${brinquedoDto.brinquedo.descricao}"></td>
+                <td th:text="${brinquedoDto.brinquedo.preco}"></td>
+                <td th:text="${brinquedoDto.brinquedo.idCategoria.descricao}"></td>
+                <img th:src="'data:image/jpeg;base64,' + ${brinquedoDto.imagemBase64}" alt="Imagem do Brinquedo"/>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

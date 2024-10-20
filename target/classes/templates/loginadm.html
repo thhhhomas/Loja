@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Brinquedos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne+Mono&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <input type="checkbox" id="hamburger-toggle" class="hamburger-toggle">
+    <label for="hamburger-toggle" class="hamburger-icon">&#9776;</label>
+
+
+    <div class="grid-container">
+        
+        <!-- Menu lateral & Página de Teste 2!!!!!!-->
+        <div class="menu">
+            <a href="index.html">
+                <img src="Imagens/logo.png" alt="logo" class="logo"> <!--wdth 150 e height 150-->
+            </a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="categorias.html">Catálogo</a></li>
+                <li><a href="loginadm.html">Administração</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+        </div>
+        
+
+        <!-- Cabeçalho -->
+        <div class="header">
+            <a href="index.html">
+                <h1>Digital Devil Saga</h1>
+            </a>
+            <!--align center-->
+            <form class="search-form">
+                <input type="text" placeholder="Pesquisar...">
+                <button type="submit"><i class="fas fa-search"></i></button> <!--Trocar icone de pesquisa-->
+            </form>
+        </div>
+
+        <form class="loginadm">
+            <div class="form-group">
+                <label for="email">Login</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+            
+                <button type="submit" class="btn btn-primary" href="administracao.html">Entrar</button>
+
+                <a href="administracao.html">
+                    Botao n funciona clica aqui
+                </a>
+
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

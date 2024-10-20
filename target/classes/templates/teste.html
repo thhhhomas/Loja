@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Brinquedos</title>
+    <link rel="stylesheet" href="C:\Users\thoma\Documents\THOMAS\Projetos\LojaDeBrinquedos\src\main\resources\static\style.css">
+</head>
+<body>
+    <input type="checkbox" id="hamburger-toggle" class="hamburger-toggle">
+    <label for="hamburger-toggle" class="hamburger-icon">&#9776;</label>
+
+
+    <div class="grid-container">
+        <!-- Menu lateral -->
+        <div class="menu">
+            <a href="#">
+                <img src="logo.png" alt="logo" class="logo">
+            </a>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Catálogo</a></li>
+                <li><a href="#">Administração</a></li>
+                <li><a href="#">Sobre</a></li>
+            </ul>
+        </div>
+
+        <!-- Cabeçalho -->
+        <div class="header">
+            <h1>Titulo</h1>
+            <form class="search-form" onsubmit="return pesquisa();" method="get">
+                <input type="text" id="barraPesquisa" placeholder="Pesquisar...">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        
+        <!-- Imagem estática -->
+        <div class="static-image">
+            <p>Imagem Estática</p>
+        </div>
+
+        <!-- Título de produtos -->
+        <div class="product-title">
+            <h3>Produtos em destaque</h3>
+        </div>
+
+        <!-- Produtos em destaque -->
+        <div class="products">
+            <div class="product-item" th:each="brinquedoDto : ${brinquedos}">
+                <p th:text="${brinquedoDto.brinquedo.id}"></p>
+                <p th:text="${brinquedoDto.brinquedo.nome}"></p>
+                <p th:text="${brinquedoDto.brinquedo.descricao}"></p>
+                <p th:text="${brinquedoDto.brinquedo.preco}"></p>
+                <p th:text="${brinquedoDto.brinquedo.idCategoria.descricao}"></p>
+                <img th:src="'data:image/jpeg;base64,' + ${brinquedoDto.imagemBase64}" alt="Imagem do Brinquedo"/>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function pesquisa(){
+        const termo = document.getElementById("barraPesquisa").value;
+        window.location.href = 'http://localhost:8080/brinquedos/search?pesquisa=' + termo;
+        return false;
+    }
+</script>
+
+</body>
+</html>
