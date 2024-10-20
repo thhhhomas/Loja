@@ -1,0 +1,572 @@
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+
+/* Estilo geral */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Ícone do menu hambúrguer */
+.hamburger-icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+/* Esconde o checkbox de controle */
+.hamburger-toggle {
+  display: none;
+}
+
+/* Container principal */
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+}
+
+/* Menu lateral */
+.menu {
+    background-color: rgb(24, 6, 89);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    grid-row: 1 / -1; /* Faz o menu ocupar toda a altura da coluna */
+    height: 100%;
+    width: 200px;
+    
+    justify-content: flex-start;
+    position:fixed;
+    transition: transform 0.3s ease;
+    font-family: Bebas Neue;
+}
+
+
+.logo {
+    width: 125px;
+    height:125px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    align-items: center;
+    
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -15px;
+}
+
+.menu ul li {
+    margin: 1px 0;
+    padding: 15%;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 35px;
+}
+
+/* Cabeçalho */
+.header {
+    background-color: red;
+    color: white;
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header h1 {
+    text-align: center;
+    font-family:Bebas Neue;
+    letter-spacing: 10px;
+    display: flex;
+    align-items:center;
+    margin: 0;
+    font-size: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0;
+    color: #ffffff;
+    font-size: 85px;
+    text-transform: uppercase;
+    text-shadow: 5px -5px 5px #ffffff,
+               -6px 0px 3px #aaff00,
+               -12px 0px 5px #f2e600,
+               -14px 0px 2px #ff4400,
+               -16px -15px 10px #eff30d,
+               18px 0px 10px #5100ff,
+               1px 10px 5px rgba(16, 16, 16, 0.5),
+               1px 15px 10px rgba(16, 16, 16, 0.4),
+               1px 20px 30px rgba(16, 16, 16, 0.3),
+               1px 25px 50px rgba(16, 16, 16, 0.2);
+}
+
+.header h1:hover{
+    color: #67ff85;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    
+}
+
+.search-form input {
+    box-sizing: border-box;
+    border: none;
+    background-color: #525050;
+    color: white;
+    font-family: Bebas Neue;
+    border-radius: 10%;
+}
+
+.search-form button {
+    font-family: Bebas Neue;
+    background-color: #ccc;
+    color: #ffffff;
+    background-color: #2b2929;
+    box-shadow: 4px -3px 1px #ffffff,
+               5px -5px 3px #5100ff;
+    border: none;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+
+/* Imagem estática */
+#carouselExampleSlidesOnly {
+    grid-column: 2/2;
+    width:100%;
+    padding: 1%;
+}
+
+/* Produtos em destaque */
+.product-title {
+    grid-column: 2 / 3;
+    text-align: center;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+/*detalhes do produto*/
+
+.detalheproduto{
+    display: grid;
+    grid-template-columns: 2fr 1fr; /*Coluna 1 maior coluna 2 menor*/
+    grid-template-rows: auto auto auto auto; /*4 linhas de altura igual*/
+    gap: 10px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    background-color:transparent;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    /*max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    margin-left: 275px;
+    margin-top: 50px;
+    overflow:initial;
+    width:500%;
+    border-radius: 5px;
+
+
+}
+
+.imagemproduto{
+    grid-column: 1/2; /*ocupa primeira coluna*/
+    grid-row: 1/5; /*Ocupa da linha 1 até a linha 4*/
+    background-color: rgb(218, 7, 7);
+    box-sizing: border-box;
+    /*max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+}
+
+.imagemproduto img{
+    width: 500px;
+    height: 500px;
+}
+
+.tituloproduto{
+    grid-column: 2/3; /*segunda coluna*/
+    grid-row:1/2; /*primeira linha*/
+    background-color: transparent;
+    box-sizing: border-box;
+    max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    word-wrap: break-word; /* Quebra as palavras que são muito longas */
+    word-break: break-all; /* Quebra qualquer palavra, se necessário */
+    white-space: normal; /* Permite que o texto quebre nas palavras */
+    overflow: auto; /* Adiciona barra de rolagem se o texto for longo */
+    max-height: 150px; /* Limita a altura do texto */
+    transform:translateX(-75px);
+    font-family: Bebas Neue;
+    
+
+
+
+}
+
+.tituloproduto p{
+    font-size: 35px;
+    font-family: Bebas Neue;
+    text-shadow: #2b2929 0px 0px 10px;
+}
+
+.descricaoproduto{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    background-color: transparent;
+    box-sizing: border-box;
+    max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    word-wrap: break-word; /* Quebra as palavras que são muito longas */
+    word-break: break-all; /* Quebra qualquer palavra, se necessário */
+    white-space: normal; /* Permite que o texto quebre nas palavras */
+    overflow: auto; /* Adiciona barra de rolagem se o texto for longo */
+    max-height: 150px; /* Limita a altura do texto */
+    transform:translateX(-75px);
+    font-family: Bebas Neue;
+    text-shadow: #2b2929 0px 0px 10px;
+    
+
+}
+.valorproduto{
+    grid-column:2/3;
+    grid-row:3/4;
+    background-color: lightyellow;
+    box-sizing: border-box;
+    max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    transform:translateX(-75px);
+    font-size: 35px;
+    font-family: Bebas Neue;
+    
+}
+
+.valorproduto p{
+    word-wrap: break-word; /* Quebra as palavras que são muito longas */
+    word-break: break-all; /* Quebra qualquer palavra, se necessário */
+    white-space: normal; /* Permite que o texto quebre nas palavras */
+    overflow: auto;
+    text-shadow: #2b2929 0px 0px 10px;
+}
+
+.botaocomprar{
+    grid-column:2/3;
+    grid-row:4/5;
+    background-color: lightcoral;
+    box-sizing: border-box;
+    max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    margin-right: 155px;
+
+}
+
+
+.products {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-item {
+    border: 2px solid black;
+    height: auto;
+    background-color: white;
+    height: auto; /* fez com oq a imagem, nome e txt coubessem na div */
+    padding: 10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: space-between;
+    font-family: Bebas Neue;
+
+}
+
+.product-item img{
+    width:auto;
+    
+}
+
+.product-item p{
+    margin: 5px 0;
+    word-wrap:break-word;
+}
+
+
+/*Classe botao, tabela, pagina adm em geral*/
+.btn{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00ff08; /* Cor de fundo */
+    color: rgb(245, 75, 75); /* Cor do texto */
+    text-align: center;
+    text-decoration: none; /* Remove o sublinhado */
+    border-radius: 5px; /* Deixa o botão com bordas arredondadas */
+}
+
+.btn-add{
+    display:block;
+    grid-column: 2/3;
+}
+
+.loginadm{
+    grid-column: 2/3;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:100px;
+    margin-top: 25px;
+    font-family: Bebas Neue;
+}
+
+.tabela {
+    grid-column: 2/ 2;
+    display: grid;
+    gap: 2px;
+    padding: 2px;
+    height: 550px;
+    font-family: Bebas Neue;
+    
+}
+
+.tabela th{
+    text-align: center;
+    border: 1px solid black;
+}
+
+.tabela td{
+    border: 1px solid black;
+}
+.editarbrinquedo{
+    grid-column: 2/3;
+    align-items: center;
+    align-self: center;
+}
+
+
+
+@media (max-width: 768px) {
+  .grid-container {
+      grid-template-columns: 1fr;
+  }
+
+  .hamburger-icon {
+    display: block;
+    top:10px;
+    left:10px;
+}
+
+/* Mostrar o menu quando o checkbox está "checked" */
+.hamburger-toggle:checked + .hamburger-icon + .grid-container .menu {
+    transform: translateX(0);
+}
+  
+  .menu {
+      transform: translateX(-100%);
+      position: fixed;
+      z-index: 999;
+      width: 200px;
+  }
+
+.menu ul li {
+    margin: 1px 0;
+    padding: 5%;
+}
+
+  
+
+  .header {
+    width:100%;
+}
+
+  .header h1 {
+    width:100%;
+    font-size: 28px; /* Reduz o tamanho do título para telas menores */
+    margin-left: 28px; /* Ajusta o espaçamento para o ícone */
+    margin-top: 9px;
+    letter-spacing: 2px;
+    
+    
+}
+
+.search-form {
+    width: 55px; /* Garante que o formulário ocupe toda a largura no mobile */
+    margin-top: 10px; /* Adiciona espaçamento abaixo do título */
+    padding: -100px;
+}
+
+.search-form input {
+    width: 15px; /* Ajusta o tamanho do input no mobile */
+    padding: -100px;
+}
+
+.search-form button {
+    width: 24px; /* Ajusta o tamanho do botão no mobile */
+}
+
+#carouselExampleSlidesOnly {
+    width:100%;
+    padding: 1%;
+}
+
+.product-title{
+    width:100%;;
+
+}
+
+.products {
+    width:20px;
+
+}
+
+.product-item{
+    width:73px;
+
+}
+
+.hamburger-icon {
+    display: block; /* Exibe o ícone do menu hambúrguer no mobile */
+}
+
+/*detalhes do produto*/
+
+.detalheproduto{
+    display:flex; /*Coluna 1 maior coluna 2 menor*/
+    flex-direction: column;/*4 linhas de altura igual*/
+    gap: 0px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    background-color:transparent;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    /*max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: 500px;
+    margin-left: 0px;
+    margin-top: 0px;
+    overflow: auto;
+    width:290px;
+    border-radius: 5px;
+    grid-column: 2/3;
+
+
+}
+
+.imagemproduto{
+    flex-direction: column;/*Ocupa da linha 1 até a linha 4*/
+    background-color: rgb(218, 7, 7);
+    box-sizing: border-box;
+    /*max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    
+}
+
+.imagemproduto img{
+    width: 245px;
+    height: 245px;
+}
+
+.tituloproduto{
+    flex-direction: column; /*primeira linha*/
+    background-color: transparent;
+    box-sizing: border-box;
+    max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    word-wrap: break-word; /* Quebra as palavras que são muito longas */
+    word-break: break-all; /* Quebra qualquer palavra, se necessário */
+    white-space: normal; /* Permite que o texto quebre nas palavras */
+    overflow: auto; /* Adiciona barra de rolagem se o texto for longo */
+    max-height: 110px; /* Limita a altura do texto */
+    font-family: Bebas Neue;
+    width: 180px;
+    margin-left: 155px;
+    margin-top: 25px;
+    
+    
+
+
+
+}
+
+.tituloproduto p{
+    font-size: 15px;
+    font-family: Bebas Neue;
+    text-shadow: #2b2929 0px 0px 10px;
+}
+
+.descricaoproduto{
+    flex-direction: column;
+    background-color: transparent;
+    box-sizing: border-box;
+    max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    word-wrap: break-word; /* Quebra as palavras que são muito longas */
+    word-break: break-all; /* Quebra qualquer palavra, se necessário */
+    white-space: normal; /* Permite que o texto quebre nas palavras */
+    overflow: auto; /* Adiciona barra de rolagem se o texto for longo */
+    max-height: 150px; /* Limita a altura do texto */
+    transform:translateX(0px);
+    font-family: Bebas Neue;
+    text-shadow: #2b2929 0px 0px 10px;
+    font-size: 13px;
+    width: 170px;
+    margin-top: 25px;
+    
+
+}
+.valorproduto{
+    flex-direction: column;
+    background-color: lightyellow;
+    box-sizing: border-box;
+    max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    transform:translateX(0px);
+    font-size: 25px;
+    font-family: Bebas Neue;
+    margin-top: 25px;
+    
+}
+
+.valorproduto p{
+    word-wrap: break-word; /* Quebra as palavras que são muito longas */
+    word-break: break-all; /* Quebra qualquer palavra, se necessário */
+    white-space: normal; /* Permite que o texto quebre nas palavras */
+    overflow: auto;
+    text-shadow: #2b2929 0px 0px 10px;
+}
+
+.botaocomprar{
+    flex-direction: column;
+    background-color: lightcoral;
+    box-sizing: border-box;
+    max-width: 100%; /* Garante que a imagem não ultrapasse os limites da coluna */
+    height: auto;
+    transform:translateX(75px);
+    font-size: 25px;
+    font-family: Bebas Neue;
+    margin-top: 25px;
+    
+
+}
+}
