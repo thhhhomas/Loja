@@ -11,6 +11,7 @@ import br.com.digitaldevilsaga.dto.BrinquedoDto;
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
 import br.com.digitaldevilsaga.model.entity.Categoria;
 import br.com.digitaldevilsaga.model.repository.BrinquedoRepository;
+import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
 import jakarta.websocket.server.PathParam;
 
 import org.springframework.ui.Model;
@@ -25,6 +26,9 @@ public class BrinquedoWebController {
     
     @Autowired
     private BrinquedoRepository repository;
+
+    @Autowired
+    private CategoriaRepository catRepository;
 
     // @GetMapping("/home")
     // public String listAll(Model model){
@@ -88,4 +92,21 @@ public class BrinquedoWebController {
 
         return "brinquedo";
     }
+
+    @GetMapping("/categoria/search")
+    public String searchCategoria(@RequestParam("cat") String catDesc, Model model){
+        Categoria categoria = catRepository.findByDescricao(catDesc);
+        List<Brinquedo> brinquedos = repository.findByCategoria(categoria);
+
+        List<BrinquedoDto> brinquedosComImagens = brinquedos.stream().map(brinquedo -> {
+            String imagemBase64 = Base64.getEncoder().encodeToString(brinquedo.getImagem());
+            return new BrinquedoDto(brinquedo, imagemBase64);
+        }).collect(Collectors.toList());
+
+        model.addAttribute("brinquedos", brinquedosComImagens);
+
+        return "index";
+    }
+
+    
 }
