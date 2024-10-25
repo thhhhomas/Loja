@@ -22,5 +22,5 @@ public interface BrinquedoRepository extends JpaRepository<Brinquedo, Integer>{
     List<Brinquedo> findByCategoria(Categoria categoria);
 
     @Query(value = "SELECT * FROM brinquedo WHERE id_categoria = :idCategoria  ORDER BY RAND() LIMIT 1", nativeQuery = true)
-    Brinquedo brinquedoAleatorio(@Param("idCategoria") int idCategoria);
+    Brinquedo brinquedoAleatorioByIdCategoria(@Param("idCategoria") int idCategoria);
 }
