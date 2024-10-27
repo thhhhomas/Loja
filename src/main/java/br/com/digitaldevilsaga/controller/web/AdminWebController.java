@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.digitaldevilsaga.service.BrinquedoService;
+import br.com.digitaldevilsaga.service.CategoriaService;
 import br.com.digitaldevilsaga.dto.BrinquedoDto;
+import br.com.digitaldevilsaga.model.entity.Categoria;
+
 import java.util.List;
 
 @Controller
@@ -16,6 +19,9 @@ public class AdminWebController {
 
     @Autowired
     private BrinquedoService brinquedoService;
+
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping("/login")
     public String loginAdmin(Model model){
@@ -30,7 +36,7 @@ public class AdminWebController {
     @GetMapping("/brinquedo")
     public String admBrinquedo(Model model){
         List<BrinquedoDto> brinquedos = brinquedoService.listarBrinquedos();
-
+        
         model.addAttribute("brinquedos", brinquedos);
 
         return "admbrinquedo";

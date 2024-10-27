@@ -60,143 +60,26 @@
       
 
         <div class="tabela">
-            <table  style="border:1px solid black">
-                <tr>
-                    <th align="center">
-                        Nome
-                    </th>
-
-                    <th align="center">
-                        Descrição
-                    </th>
-    
-                    <th align="center">
-                        Categoria
-                    </th>
-    
-                    <th align="center">
-                        Valor
-                    </th>
-    
-                    <th align="center">
-                        Controle
-                    </th>
-                </tr>
-    
-                <tr>
-                    <td align="center">
-                        Nome do brinquedo 1
-                    </td>
-
-                    <td align="center">
-                        Descrição do Brinquedo
-                    </td>
-    
-                    <td align="center">
-                        Categoria 1
-                    </td>
-    
-                    <td align="center">
-                        R$50,00
-                    </td>
-    
-                    <td align="center">
-                        <a href="editar.html">Editar</a>/
-                        <a href="excluir.html">Excluir</a>
-                    </td>
-                </tr>
-    
-                <tr>
-                    <td align="center">
-                        Nome do brinquedo 2
-                    </td>
-
-                    <td align="center">
-                        Descrição do Brinquedo
-                    </td>
-    
-                    <td align="center">
-                        Categoria 1
-                    </td>
-    
-                    <td align="center">
-                        R$50,00
-                    </td>
-    
-                    <td align="center">
-                        <a href="editar.html">Editar</a>/
-                        <a href="excluir.html">Excluir</a>
-                    </td>
-                </tr>
-    
-                <tr>
-                    <td align="center">
-                        Nome do brinquedo 3
-                    </td>
-
-                    <td align="center">
-                        Descrição do Brinquedo
-                    </td>
-    
-                    <td align="center">
-                        Categoria 1
-                    </td>
-    
-                    <td align="center">
-                        R$50,00
-                    </td>
-    
-                    <td align="center">
-                        <a href="editar.html">Editar</a>/
-                        <a href="excluir.html">Excluir</a>
-                    </td>
-                </tr>
-    
-                <tr>
-                    <td align="center">
-                        Nome do brinquedo 4
-                    </td>
-
-                    <td align="center">
-                        Descrição do Brinquedo
-                    </td>
-    
-                    <td align="center">
-                        Categoria 1
-                    </td>
-    
-                    <td align="center">
-                        R$50,00
-                    </td>
-    
-                    <td align="center">
-                        <a href="editar.html">Editar</a>/
-                        <a href="excluir.html">Excluir</a>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td align="center">
-                        Nome do brinquedo1
-                    </td>
-
-                    <td align="center">
-                        Descrição do Brinquedo
-                    </td>
-    
-                    <td align="center">
-                        Categoria 1
-                    </td>
-    
-                    <td align="center">
-                        R$50,00
-                    </td>
-    
-                    <td align="center">
-                        <a href="editar.html">Editar</a>/
-                        <a href="excluir.html">Excluir</a>
-                    </td>
-                </tr>
+            <table style="border:1px solid black">
+                <thead>
+                    <tr>
+                        <th align="center">Nome</th>
+                        <th align="center">Descrição</th>
+                        <th align="center">Valor</th>
+                        <th align="center">Controle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="brinquedoDto : ${brinquedos}">
+                        <td align="center" th:text="${brinquedoDto.brinquedo.nome}">Nome</td>
+                        <td align="center" th:text="${brinquedoDto.brinquedo.descricao}">Descrição</td>
+                        <td align="center" th:text="${brinquedoDto.brinquedo.preco}">Valor</td>
+                        <td align="center">
+                            <a href="">Editar</a> /
+                            <a href="">Excluir</a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
