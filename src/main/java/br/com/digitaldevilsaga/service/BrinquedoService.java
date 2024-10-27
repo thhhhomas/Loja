@@ -57,4 +57,8 @@ public class BrinquedoService {
     public List<Brinquedo> listarBrinquedosByCategoria(Categoria categoria){
         return brinquedoRepository.findByCategoria(categoria);
     }
+
+    public void atualizarBrinquedo(Brinquedo brinquedo) {
+        brinquedoRepository.save(brinquedo);
+    }
 }
