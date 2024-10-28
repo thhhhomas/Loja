@@ -24,9 +24,6 @@ public class BrinquedoCategoriaService {
     private final CategoriaService categoriaService;
 
     @Autowired
-    private CategoriaRepository categoriaRepository;
-
-    @Autowired
     public BrinquedoCategoriaService(BrinquedoService brinquedoService, CategoriaService categoriaService){
         this.brinquedoService = brinquedoService;
         this.categoriaService = categoriaService;
@@ -46,16 +43,16 @@ public class BrinquedoCategoriaService {
     public CategoriaDto getCategoriaById(Integer id){
         Categoria categoria = categoriaService.getCategoriaById(id);
         String imagemBase64 = Base64.getEncoder().encodeToString(brinquedoService.randomBrinquedoByCategoriaId(categoria.getId()).getImagem());
-
-        return new CategoriaDto(categoria, imagemBase64);
+        Long quantidadeBrinquedos = categoriaService.contarBrinquedosById(categoria.getId());
+        return new CategoriaDto(categoria, imagemBase64, quantidadeBrinquedos);
     }
 
     public List<CategoriaDto> listarCategorias(){
         List<Categoria> categorias = categoriaService.listarCategorias();
         List<CategoriaDto> categoriasComImagens = categorias.stream().map(categoria -> {
             String imagemBase64 = Base64.getEncoder().encodeToString(brinquedoService.randomBrinquedoByCategoriaId(categoria.getId()).getImagem());
-        
-            return new CategoriaDto(categoria, imagemBase64);
+            Long quantidadebrinquedos = categoriaService.contarBrinquedosById(categoria.getId());
+            return new CategoriaDto(categoria, imagemBase64, quantidadebrinquedos);
         }).collect(Collectors.toList());
         return categoriasComImagens;
     }

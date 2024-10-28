@@ -13,6 +13,7 @@ import br.com.digitaldevilsaga.service.BrinquedoService;
 import br.com.digitaldevilsaga.service.CategoriaService;
 import br.com.digitaldevilsaga.service.BrinquedoCategoriaService;
 import br.com.digitaldevilsaga.dto.BrinquedoDto;
+import br.com.digitaldevilsaga.dto.CategoriaDto;
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
 
 import br.com.digitaldevilsaga.dto.NovoBrinquedoDto;
@@ -35,12 +36,6 @@ public class AdminWebController {
     @Autowired
     private BrinquedoCategoriaService brinquedoCategoriaService;
 
-    @Autowired
-    private BrinquedoRepository br;
-
-    @Autowired
-    private CategoriaRepository cr;
-
     @GetMapping("/login")
     public String loginAdmin(Model model){
         return "login";
@@ -58,6 +53,15 @@ public class AdminWebController {
         model.addAttribute("brinquedos", brinquedos);
 
         return "admbrinquedo";
+    }
+
+    @GetMapping("/categoria")
+    public String admCategoria(Model model){
+        List<CategoriaDto> categorias = brinquedoCategoriaService.listarCategorias();
+
+        model.addAttribute("categorias", categorias);
+
+        return "admcategoria";
     }
 
     @GetMapping("/brinquedo/novo")

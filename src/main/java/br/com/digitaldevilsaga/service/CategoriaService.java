@@ -31,4 +31,8 @@ public class CategoriaService {
     public Categoria getCategoriaById(Integer id){
         return categoriaRepository.findById(id).get();
     }
+
+    public Long contarBrinquedosById(Integer id){
+        return categoriaRepository.countBrinquedosByCategoriaId(id);
+    }
 }
