@@ -67,22 +67,18 @@
 
         <!-- Produtos em destaque -->
         <div class="editarbrinquedo">
-            <form action="/editar" method="post">
-                Código: <input type="text" name="codigo" disabled="disabled" placeholder="Inacessível alterar"/>
+            <form action="/admin/brinquedo/editar" method="post">
+                Nome: <input type="text" name="nome" value="${brinquedo.nome}"/>
                 <br>
                 Descrição: <input type="text" name="descricao" value="${brinquedo.descricao}"/>
                 <br>
                 Categoria: <input type="text" name="categoria" value="${brinquedo.categoria}"/>
                 <br>
-                Marca: <input type="text" name="marca" value="${brinquedo.marca}"/>
-                <br>
                 Imagem: <textarea name="txtimagem" rows="1" cols="20">
                 </textarea>
                 <input type="file" name="imagem" value="${brinquedo.imagem}"/>
                 <br>
-                Valor: <input type="number" name="codigo" value="${brinquedo.Valor}"/>
-                <br>
-                Detalhes: <textarea name="detalhes" rows="4" cols="20" placeholder="Insira aqui os detalhes do brinquedo">${brinquedo.detalhes}</textarea>
+                Valor: <input type="number" name="preco" value="${brinquedo.Valor}"/>
                 <br>
                 <input type="submit" name="salvaredt" value="Salvar Edição">
             </form>
