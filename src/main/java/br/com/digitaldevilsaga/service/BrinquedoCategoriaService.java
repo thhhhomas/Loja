@@ -72,4 +72,20 @@ public class BrinquedoCategoriaService {
 
         brinquedoService.salvarBrinquedo(brinquedo);
     }
+
+    public void atualizarBrinquedo(NovoBrinquedoDto novoBrinquedoDto){
+        Brinquedo brinquedo = brinquedoService.getBrinquedoByNome(novoBrinquedoDto.getNome());
+
+        brinquedo.setCategoria(categoriaService.getCategoriaById(novoBrinquedoDto.getIdCategoria()));
+        brinquedo.setNome(novoBrinquedoDto.getNome());
+        brinquedo.setDescricao(novoBrinquedoDto.getDescricao());
+        brinquedo.setPreco(novoBrinquedoDto.getPreco());
+        try{
+            brinquedo.setImagem(novoBrinquedoDto.getImagem().getBytes());
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        brinquedoService.salvarBrinquedo(brinquedo);
+    }
 }

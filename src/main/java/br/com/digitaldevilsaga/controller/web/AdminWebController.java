@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,6 +23,7 @@ import br.com.digitaldevilsaga.model.repository.BrinquedoRepository;
 import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin")
@@ -78,5 +80,19 @@ public class AdminWebController {
             
         }
         return "redirect:/admin/brinquedo"; // Redireciona para a página de listagem de brinquedos
-    }   
+    }  
+    
+    @GetMapping("/brinquedo/editar")
+    public String editarBrinquedoForm(@RequestParam("id") int id, Model model) {
+        model.addAttribute("brinquedoDto", brinquedoService.getBrinquedoById(id));
+        model.addAttribute("categorias", categoriaService.listarCategorias());
+        return "editar";
+    }
+    
+    @PostMapping("/brinquedo/salvar")
+    public String editarBrinquedo(@ModelAttribute NovoBrinquedoDto novoBrinquedoDto) {
+        brinquedoCategoriaService.atualizarBrinquedo(novoBrinquedoDto);
+        
+        return "redirect:/admin/brinquedo";
+    }
 }

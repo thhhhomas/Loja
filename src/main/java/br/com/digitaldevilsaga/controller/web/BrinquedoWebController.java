@@ -70,20 +70,4 @@ public class BrinquedoWebController {
 
         return "index";
     }
-
-    @GetMapping("/editar/{id}")
-    public String mostrarFormularioEdicao(@PathVariable int id, Model model) {
-        BrinquedoDto brinquedo = brinquedoService.getBrinquedoById(id);
-       
-        model.addAttribute("brinquedo", brinquedo);
-        return "editar";
-    }
-    
-    @PostMapping("/editar")
-    public String editarBrinquedo(@ModelAttribute Brinquedo brinquedo) {
-        brinquedoService.atualizarBrinquedo(brinquedo);
-        
-        return "redirect:/admbrinquedo";
-    }
-    
 }

@@ -77,7 +77,7 @@
                         <td align="center" th:text="${brinquedo.categoria.descricao}">Categoria</td>
                         <td align="center" th:text="${brinquedo.preco}">Valor</td>
                         <td align="center">
-                            <a href="">Editar</a> /
+                            <a th:href = "@{/admin/brinquedos/editar(id=${brinquedo.id})}">Editar</a> /
                             <a href="">Excluir</a>
                         </td>
                     </tr>

@@ -36,6 +36,10 @@ public class Brinquedo {
 
     public Brinquedo(){}
 
+    public void setId(int id){
+        this.id = id;
+    }
+
     public int getId(){
         return id;
     }

@@ -42,7 +42,11 @@ public class BrinquedoService {
         return brinquedosComImagens;
     }
 
-    public BrinquedoDto getBrinquedoById(Integer id){
+    public Brinquedo getBrinquedoByNome(String nome){
+        return brinquedoRepository.findByNome(nome);
+    }
+
+    public BrinquedoDto getBrinquedoById(int id){
         Brinquedo brinquedo = brinquedoRepository.findById(id).get();
 
         String imagemBase64 = Base64.getEncoder().encodeToString(brinquedo.getImagem());
@@ -60,6 +64,7 @@ public class BrinquedoService {
     }
 
     public void atualizarBrinquedo(Brinquedo brinquedo) {
+
         brinquedoRepository.save(brinquedo);
     }
 

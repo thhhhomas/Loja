@@ -67,18 +67,20 @@
 
         <!-- Produtos em destaque -->
         <div class="editarbrinquedo">
-            <form action="/admin/brinquedo/editar" method="post">
-                Nome: <input type="text" name="nome" value="${brinquedo.nome}"/>
+            <form action="/admin/brinquedo/salvar" method="post" enctype="multipart/form-data">
                 <br>
-                Descrição: <input type="text" name="descricao" value="${brinquedo.descricao}"/>
+                Nome: <input type="text" name="nome" value="${brinquedoDto.brinquedo.nome}"/>
                 <br>
-                Categoria: <input type="text" name="categoria" value="${brinquedo.categoria}"/>
+                Descrição: <input type="text" name="descricao" value="${brinquedoDto.brinquedo.descricao}"/>
                 <br>
-                Imagem: <textarea name="txtimagem" rows="1" cols="20">
-                </textarea>
-                <input type="file" name="imagem" value="${brinquedo.imagem}"/>
+                Categoria: 
+                <select name="idCategoria" required>
+                    <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.descricao}"></option>
+                </select>
                 <br>
-                Valor: <input type="number" name="preco" value="${brinquedo.Valor}"/>
+                Imagem: <input type="file" name="imagem"/>
+                <br>
+                Valor: <input type="number" name="preco" value="${brinquedoDto.brinquedo.preco}"/>
                 <br>
                 <input type="submit" name="salvaredt" value="Salvar Edição">
             </form>
