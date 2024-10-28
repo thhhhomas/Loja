@@ -1,10 +1,13 @@
 package br.com.digitaldevilsaga.dto;
 
+
+
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
 
 public class BrinquedoDto {
     private Brinquedo brinquedo;
     private String imagemBase64;
+
 
     public BrinquedoDto(Brinquedo brinquedo, String imagemBase64){
         this.brinquedo = brinquedo;
@@ -18,4 +21,5 @@ public class BrinquedoDto {
     public String getImagemBase64(){
         return imagemBase64;
     }
+
 }

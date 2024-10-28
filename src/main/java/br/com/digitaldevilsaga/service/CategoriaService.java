@@ -30,4 +30,7 @@ public class CategoriaService {
     public Categoria getCategoriaById(Integer id){
         return categoriaRepository.findById(id).get();
     }
+    public Categoria buscarPorId(Integer id) {
+        return categoriaRepository.findById(id).orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+    }
 }

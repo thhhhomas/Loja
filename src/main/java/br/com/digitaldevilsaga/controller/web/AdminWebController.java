@@ -4,12 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.digitaldevilsaga.service.BrinquedoService;
 import br.com.digitaldevilsaga.service.CategoriaService;
+import br.com.digitaldevilsaga.service.BrinquedoCategoriaService;
 import br.com.digitaldevilsaga.dto.BrinquedoDto;
-import br.com.digitaldevilsaga.model.entity.Categoria;
+import br.com.digitaldevilsaga.model.entity.Brinquedo;
+
+import br.com.digitaldevilsaga.dto.NovoBrinquedoDto;
+
+import br.com.digitaldevilsaga.model.repository.BrinquedoRepository;
+import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
 
 import java.util.List;
 
@@ -23,6 +32,15 @@ public class AdminWebController {
     @Autowired
     private CategoriaService categoriaService;
 
+    @Autowired
+    private BrinquedoCategoriaService brinquedoCategoriaService;
+
+    @Autowired
+    private BrinquedoRepository br;
+
+    @Autowired
+    private CategoriaRepository cr;
+
     @GetMapping("/login")
     public String loginAdmin(Model model){
         return "login";
@@ -35,10 +53,38 @@ public class AdminWebController {
 
     @GetMapping("/brinquedo")
     public String admBrinquedo(Model model){
-        List<BrinquedoDto> brinquedos = brinquedoService.listarBrinquedos();
+        List<Brinquedo> brinquedos = brinquedoService.listarBrinquedosNoImages();
         
         model.addAttribute("brinquedos", brinquedos);
 
         return "admbrinquedo";
     }
+
+    @GetMapping("/brinquedo/novo")
+    public String novoBrinquedoForm(Model model) {
+        model.addAttribute("categorias", categoriaService.listarCategorias());
+        return "novobrinquedo";
+    }
+
+    @PostMapping("/brinquedo/adicionar")
+    public String adicionarBrinquedo(@ModelAttribute NovoBrinquedoDto novoBrinquedoDto, RedirectAttributes redirectAttributes) {
+        // try {
+        //     brinquedoCategoriaService.salvarBrinquedo(novoBrinquedoDto);
+        //     redirectAttributes.addFlashAttribute("mensagem", "Brinquedo salvo com sucesso!");
+        // } catch (Exception e) {
+        //     redirectAttributes.addFlashAttribute("erro", "Erro ao salvar o brinquedo: " + e.getMessage());
+        // }
+
+        Brinquedo brinquedo = new Brinquedo();
+
+        brinquedo.setNome("banana");
+        brinquedo.setDescricao("é uma banana legal");
+        brinquedo.setCategoria(cr.findByDescricao("Herois"));
+        brinquedo.setPreco(2.00);
+        brinquedo.setImagem(null);
+
+        br.save(brinquedo);
+
+        return "redirect:/admin/brinquedo"; // Redireciona para a página de listagem de brinquedos
+    }   
 }

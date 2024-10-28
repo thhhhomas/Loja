@@ -21,17 +21,17 @@ public class Brinquedo {
     @JoinColumn(name = "idCategoria")
     private Categoria categoria;
 
-    @Column(name="nome", nullable=false)
+    @Column(name="nome", nullable=true)
     private String nome;
 
-    @Column(name="descricao", nullable=false)
+    @Column(name="descricao", nullable=true)
     private String descricao;
     
-    @Column(name="preco", nullable=false)
+    @Column(name="preco", nullable=true)
     private double preco;
 
     @Lob
-    @Column(name="imagem", columnDefinition = "MEDIUMBLOB")
+    @Column(name="imagem", columnDefinition = "LONGBLOB")
     private byte[] imagem;
 
     public Brinquedo(){}
@@ -64,11 +64,11 @@ public class Brinquedo {
         return imagem;
     }
 
-    public void setIdCategoria(Categoria categoria){
+    public void setCategoria(Categoria categoria){
         this.categoria = categoria;
     }
     
-    public Categoria getIdCategoria(){
+    public Categoria getCategoria(){
         return categoria;
     }
 

@@ -13,6 +13,8 @@ import br.com.digitaldevilsaga.dto.BrinquedoDto;
 import br.com.digitaldevilsaga.dto.CategoriaDto;
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
 import br.com.digitaldevilsaga.model.entity.Categoria;
+import br.com.digitaldevilsaga.dto.NovoBrinquedoDto;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class BrinquedoCategoriaService {
@@ -52,5 +54,21 @@ public class BrinquedoCategoriaService {
             return new CategoriaDto(categoria, imagemBase64);
         }).collect(Collectors.toList());
         return categoriasComImagens;
+    }
+
+    public void salvarBrinquedo(NovoBrinquedoDto novoBrinquedoDto){
+        Brinquedo brinquedo = new Brinquedo();
+
+        brinquedo.setCategoria(categoriaService.buscarPorId(novoBrinquedoDto.getCategoriaId()));
+        brinquedo.setNome(novoBrinquedoDto.getNome());
+        brinquedo.setDescricao(novoBrinquedoDto.getDescricao());
+        brinquedo.setPreco(novoBrinquedoDto.getPreco());
+        try{
+            brinquedo.setImagem(novoBrinquedoDto.getImagem().getBytes());
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        brinquedoService.salvarBrinquedo(brinquedo);
     }
 }

@@ -50,7 +50,7 @@
         </div>
 
         <div class="btn-add">
-            <a href="#">
+            <a href="/admin/brinquedo/novo">
                 Adicionar
             </a>
 
@@ -65,15 +65,17 @@
                     <tr>
                         <th align="center">Nome</th>
                         <th align="center">Descrição</th>
+                        <th align="center">Categoria</th>
                         <th align="center">Valor</th>
                         <th align="center">Controle</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="brinquedoDto : ${brinquedos}">
-                        <td align="center" th:text="${brinquedoDto.brinquedo.nome}">Nome</td>
-                        <td align="center" th:text="${brinquedoDto.brinquedo.descricao}">Descrição</td>
-                        <td align="center" th:text="${brinquedoDto.brinquedo.preco}">Valor</td>
+                    <tr th:each="brinquedo : ${brinquedos}">
+                        <td align="center" th:text="${brinquedo.nome}">Nome</td>
+                        <td align="center" th:text="${brinquedo.descricao}">Descrição</td>
+                        <td align="center" th:text="${brinquedo.categoria.descricao}">Categoria</td>
+                        <td align="center" th:text="${brinquedo.preco}">Valor</td>
                         <td align="center">
                             <a href="">Editar</a> /
                             <a href="">Excluir</a>

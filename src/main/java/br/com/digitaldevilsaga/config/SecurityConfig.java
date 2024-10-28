@@ -33,8 +33,10 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
+            .csrf(csrf -> csrf.disable()) 
             .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/admin/**").authenticated()
+                .requestMatchers("/admin/brinquedo/adicionar").permitAll()
                 .anyRequest().permitAll()
             )
             .formLogin((form) -> form
@@ -57,4 +59,5 @@ public class SecurityConfig{
         authenticationManagerBuilder.userDetailsService(adminService).passwordEncoder(passwordEncoder());
         return authenticationManagerBuilder.build();
     }
+    
 }

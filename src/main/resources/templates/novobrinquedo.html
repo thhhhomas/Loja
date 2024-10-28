@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-        <table width="80%">
+        <table width="80%"> 
             <tr>
                 <td>
                     <a href="index.html">
@@ -51,25 +51,25 @@
         <h3>Catálogo de Brinquedos :: Novo Brinquedo</h3>
         <hr>
 
-        <form>
-            Código: <input type="text" name="codigo"/>
+        <form action="/admin/brinquedo/adicionar" method="post" enctype="multipart/form-data">
+            <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
             <br>
-            Descrição: <input type="text" name="descricao"/>
+            Nome: <input type="text" name="nome" required>
             <br>
-            Categoria: <input type="text" name="categoria"/>
+            Descrição: <input type="text" name="descricao" required/>
             <br>
-            Marca: <input type="text" name="marca"/>
+            Categoria: 
+            <select name="idCategoria" required>
+                <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.descricao}"></option>
+            </select>
             <br>
-            Imagem: <textarea name="txtimagem" rows="1" cols="20">
-            </textarea>
-            <input type="file" name="imagem"/>
+            <!-- Imagem: <input type="file" name="imagem"/> -->
             <br>
-            Valor: <input type="number" name="codigo"/>
-            <br>
-            Detalhes: <textarea name="detalhes" rows="4" cols="20"></textarea>
+            Valor: <input type="number" name="valor" step="0.01" required/>
             <br>
             <input type="submit" name="salvar" value="Salvar Dados">
         </form>
+        
     </div>
     
 </body>
