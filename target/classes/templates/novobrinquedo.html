@@ -63,9 +63,9 @@
                 <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.descricao}"></option>
             </select>
             <br>
-            <!-- Imagem: <input type="file" name="imagem"/> -->
+            Imagem: <input type="file" name="imagem"/>
             <br>
-            Valor: <input type="number" name="valor" step="0.01" required/>
+            Valor: <input type="number" name="preco" step="0.01" required/>
             <br>
             <input type="submit" name="salvar" value="Salvar Dados">
         </form>

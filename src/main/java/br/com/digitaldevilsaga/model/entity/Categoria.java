@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategoria;
+    private Integer idCategoria;
 
     @Column(name="descricao", nullable=false)
     private String descricao;

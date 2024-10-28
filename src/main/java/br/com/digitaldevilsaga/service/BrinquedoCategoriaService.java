@@ -13,6 +13,7 @@ import br.com.digitaldevilsaga.dto.BrinquedoDto;
 import br.com.digitaldevilsaga.dto.CategoriaDto;
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
 import br.com.digitaldevilsaga.model.entity.Categoria;
+import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
 import br.com.digitaldevilsaga.dto.NovoBrinquedoDto;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,9 @@ public class BrinquedoCategoriaService {
 
     private final BrinquedoService brinquedoService;
     private final CategoriaService categoriaService;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @Autowired
     public BrinquedoCategoriaService(BrinquedoService brinquedoService, CategoriaService categoriaService){
@@ -59,7 +63,7 @@ public class BrinquedoCategoriaService {
     public void salvarBrinquedo(NovoBrinquedoDto novoBrinquedoDto){
         Brinquedo brinquedo = new Brinquedo();
 
-        brinquedo.setCategoria(categoriaService.buscarPorId(novoBrinquedoDto.getCategoriaId()));
+        brinquedo.setCategoria(categoriaService.getCategoriaById(novoBrinquedoDto.getIdCategoria()));
         brinquedo.setNome(novoBrinquedoDto.getNome());
         brinquedo.setDescricao(novoBrinquedoDto.getDescricao());
         brinquedo.setPreco(novoBrinquedoDto.getPreco());

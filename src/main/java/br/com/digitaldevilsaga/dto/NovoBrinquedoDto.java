@@ -5,7 +5,7 @@ public class NovoBrinquedoDto{
 
     private String nome;
     private String descricao;
-    private int idCategoria;
+    private Integer idCategoria;
     private double preco;
     private MultipartFile imagem;
 
@@ -20,19 +20,18 @@ public class NovoBrinquedoDto{
         return nome;
     }
 
-    public void setNome(String descricao) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
-    // Getter e Setter para 'categoriaId'
-    public int getCategoriaId() {
+
+    public Integer getIdCategoria() {
         return idCategoria;
     }
 
-    public void setCategoriaId(int categoriaId) {
+    public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
     }
 
-    // Getter e Setter para 'valor'
     public double getPreco() {
         return preco;
     }
@@ -41,7 +40,6 @@ public class NovoBrinquedoDto{
         this.preco = valor;
     }
 
-    // Getter e Setter para 'imagem'
     public MultipartFile getImagem() {
         return imagem;
     }

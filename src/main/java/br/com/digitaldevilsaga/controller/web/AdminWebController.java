@@ -67,24 +67,12 @@ public class AdminWebController {
     }
 
     @PostMapping("/brinquedo/adicionar")
-    public String adicionarBrinquedo(@ModelAttribute NovoBrinquedoDto novoBrinquedoDto, RedirectAttributes redirectAttributes) {
-        // try {
-        //     brinquedoCategoriaService.salvarBrinquedo(novoBrinquedoDto);
-        //     redirectAttributes.addFlashAttribute("mensagem", "Brinquedo salvo com sucesso!");
-        // } catch (Exception e) {
-        //     redirectAttributes.addFlashAttribute("erro", "Erro ao salvar o brinquedo: " + e.getMessage());
-        // }
-
-        Brinquedo brinquedo = new Brinquedo();
-
-        brinquedo.setNome("banana");
-        brinquedo.setDescricao("é uma banana legal");
-        brinquedo.setCategoria(cr.findByDescricao("Herois"));
-        brinquedo.setPreco(2.00);
-        brinquedo.setImagem(null);
-
-        br.save(brinquedo);
-
+    public String adicionarBrinquedo(@ModelAttribute NovoBrinquedoDto novoBrinquedoDto) {
+        try {
+            brinquedoCategoriaService.salvarBrinquedo(novoBrinquedoDto);
+        } catch (Exception e) {
+            
+        }
         return "redirect:/admin/brinquedo"; // Redireciona para a página de listagem de brinquedos
     }   
 }

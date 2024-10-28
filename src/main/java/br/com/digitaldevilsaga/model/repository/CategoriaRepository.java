@@ -6,6 +6,4 @@ import br.com.digitaldevilsaga.model.entity.Categoria;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
     Categoria findByDescricao(String descricao);
-
-    Categoria findByIdCategoria(int idCategoria);
 }

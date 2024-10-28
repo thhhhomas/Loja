@@ -11,6 +11,7 @@ import br.com.digitaldevilsaga.model.entity.Categoria;
 import java.util.List;
 import java.util.Base64;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class CategoriaService {
@@ -29,8 +30,5 @@ public class CategoriaService {
 
     public Categoria getCategoriaById(Integer id){
         return categoriaRepository.findById(id).get();
-    }
-    public Categoria buscarPorId(Integer id) {
-        return categoriaRepository.findById(id).orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
     }
 }
