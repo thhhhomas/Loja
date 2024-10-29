@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <table width="80%"> 
+            <tr>
+                <td>
+                    <a href="/brinquedos/home">
+                        <img src="Imagens/logo.png" width="100" height="100">
+                    </a>
+                </td>
+                <td>
+                    <a href="/brinquedos/home">
+                        <h1 align="center">Loja de Brinquedos</h1> 
+                    </a>
+                    
+                </td> 
+            </tr>
+        </table>   
+    </div>
+     
+    <hr>
+
+    <div>
+        <h2>Menu Principal</h2>
+        <menu>
+            <a href="/brinquedos/home">
+                <li>Home</li>
+            </a>
+            <a href="categorias.html">
+                <li>Catálogos de Brinquedos</li>
+            </a>
+            <a href="administracao.html">
+                <li>Administração</li>
+            </a>
+            <a href="sobre.html">
+                <li>Sobre a Equipe</li>
+            </a>
+            
+        </menu>
+    </div>
+
+    
+
+    <div>
+        <h3>Catálogo de Brinquedos :: Novo Brinquedo</h3>
+        <hr>
+
+        <form action="/admin/categoria/adicionar" method="post" enctype="multipart/form-data">
+            <br>
+            Descrição: <input type="text" name="descricao" required/>
+            <br>
+            <input type="submit" name="salvar" value="Salvar Dados">
+        </form>
+        
+    </div>
+    
+</body>
+</html>

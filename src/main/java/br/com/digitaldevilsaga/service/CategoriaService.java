@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Base64;
 import java.util.stream.Collectors;
 import java.util.Optional;
+import br.com.digitaldevilsaga.dto.NovaCategoriaDto;
 
 @Service
 public class CategoriaService {
@@ -34,5 +35,11 @@ public class CategoriaService {
 
     public Long contarBrinquedosById(Integer id){
         return categoriaRepository.countBrinquedosByCategoriaId(id);
+    }
+
+    public void salvarCategoria(NovaCategoriaDto novaCategoria){
+        Categoria categoria = new Categoria();
+
+        categoria.setDescricao(novaCategoria.getDescricao());
     }
 }

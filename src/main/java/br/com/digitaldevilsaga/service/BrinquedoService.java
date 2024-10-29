@@ -55,6 +55,12 @@ public class BrinquedoService {
         return brinquedoDto;
     }
 
+    public Brinquedo getBrinquedoByIdSemImagem(int id){
+        Brinquedo brinquedo = brinquedoRepository.findById(id).get();
+
+        return brinquedo;
+    }
+
     public Brinquedo randomBrinquedoByCategoriaId(int id){
         return brinquedoRepository.brinquedoAleatorioByIdCategoria(id);
     }
@@ -76,5 +82,9 @@ public class BrinquedoService {
         // System.out.println("Salvando o brinquedo: " + brinquedo.getDescricao());
         brinquedoRepository.save(brinquedo);
         // System.out.println("Brinquedo salvo com sucesso no banco de dados.");
+    }
+
+    public void excluirBrinquedo(int id) {
+        brinquedoRepository.deleteById(id);
     }
 }

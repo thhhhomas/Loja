@@ -25,6 +25,9 @@ import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
 import java.util.List;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.digitaldevilsaga.dto.BrinquedoAtualizadoDto;
+import br.com.digitaldevilsaga.dto.NovaCategoriaDto;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminWebController {
@@ -57,14 +60,7 @@ public class AdminWebController {
         return "admbrinquedo";
     }
 
-    @GetMapping("/categoria")
-    public String admCategoria(Model model){
-        List<CategoriaDto> categorias = brinquedoCategoriaService.listarCategorias();
-
-        model.addAttribute("categorias", categorias);
-
-        return "admcategoria";
-    }
+    
 
     @GetMapping("/brinquedo/novo")
     public String novoBrinquedoForm(Model model) {
@@ -90,9 +86,40 @@ public class AdminWebController {
     }
     
     @PostMapping("/brinquedo/salvar")
-    public String editarBrinquedo(@ModelAttribute NovoBrinquedoDto novoBrinquedoDto) {
-        brinquedoCategoriaService.atualizarBrinquedo(novoBrinquedoDto);
+    public String editarBrinquedo(@ModelAttribute BrinquedoAtualizadoDto brinquedoAtualizadoDto) {
+        brinquedoCategoriaService.atualizarBrinquedo(brinquedoAtualizadoDto);
         
         return "redirect:/admin/brinquedo";
     }
+
+    @PostMapping("/brinquedo/excluir")
+    public String excluirBrinquedo(@RequestParam ("id") int id, RedirectAttributes redirectAttributes) {
+        try{
+            brinquedoService.excluirBrinquedo(id);
+            redirectAttributes.addFlashAttribute("mensagem", "Brinquedo excluido com sucesso!");
+        } catch(Exception e){
+            redirectAttributes.addFlashAttribute("erro", "Erro ao excluir o brinquedo.");
+        }
+        return "redirect:/admin/brinquedo";
+    }
+
+    @GetMapping("/categoria")
+    public String admCategoria(Model model){
+        List<CategoriaDto> categorias = brinquedoCategoriaService.listarCategorias();
+
+        model.addAttribute("categorias", categorias);
+
+        return "admcategoria";
+    }
+
+    @PostMapping("/categoria/adicionar")
+    public String adicionarCategoria(@ModelAttribute NovaCategoriaDto novaCategoria) {
+        try {
+            
+        } catch (Exception e) {
+            
+        }
+        return "redirect:/admin/brinquedo"; // Redireciona para a página de listagem de brinquedos
+    }  
+    
 }

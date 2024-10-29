@@ -62,25 +62,28 @@
 
         <!-- Título de produtos -->
         <div class="product-title">
-            <h3>Titulo do Brinquedo 1</h3>
+            <h3>Brinquedo</h3>
         </div>
 
-        <!-- Produtos em destaque -->
         <div class="editarbrinquedo">
             <form action="/admin/brinquedo/salvar" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" th:value="${brinquedoDto.brinquedo.id}"/>
                 <br>
-                Nome: <input type="text" name="nome" value="${brinquedoDto.brinquedo.nome}"/>
+                Nome: <input type="text" name="nome" th:value="${brinquedoDto.brinquedo.nome}"/>
                 <br>
-                Descrição: <input type="text" name="descricao" value="${brinquedoDto.brinquedo.descricao}"/>
+                Descrição: <input type="text" name="descricao" th:value="${brinquedoDto.brinquedo.descricao}"/>
                 <br>
                 Categoria: 
                 <select name="idCategoria" required>
-                    <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.descricao}"></option>
+                    <option th:each="categoria : ${categorias}" 
+                            th:value="${categoria.id}" 
+                            th:text="${categoria.descricao}" 
+                            th:selected="${categoria.id == brinquedoDto.brinquedo.categoria.id}">Categoria</option>
                 </select>
                 <br>
                 Imagem: <input type="file" name="imagem"/>
                 <br>
-                Valor: <input type="number" name="preco" value="${brinquedoDto.brinquedo.preco}"/>
+                Valor: <input type="number" name="preco" th:value="${brinquedoDto.brinquedo.preco}"/>
                 <br>
                 <input type="submit" name="salvaredt" value="Salvar Edição">
             </form>

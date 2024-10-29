@@ -15,6 +15,7 @@ import br.com.digitaldevilsaga.model.entity.Brinquedo;
 import br.com.digitaldevilsaga.model.entity.Categoria;
 import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
 import br.com.digitaldevilsaga.dto.NovoBrinquedoDto;
+import br.com.digitaldevilsaga.dto.BrinquedoAtualizadoDto;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -73,17 +74,19 @@ public class BrinquedoCategoriaService {
         brinquedoService.salvarBrinquedo(brinquedo);
     }
 
-    public void atualizarBrinquedo(NovoBrinquedoDto novoBrinquedoDto){
-        Brinquedo brinquedo = brinquedoService.getBrinquedoByNome(novoBrinquedoDto.getNome());
+    public void atualizarBrinquedo(BrinquedoAtualizadoDto brinquedoAtualizadoDto){
+        Brinquedo brinquedo = brinquedoService.getBrinquedoByIdSemImagem(brinquedoAtualizadoDto.getId());
 
-        brinquedo.setCategoria(categoriaService.getCategoriaById(novoBrinquedoDto.getIdCategoria()));
-        brinquedo.setNome(novoBrinquedoDto.getNome());
-        brinquedo.setDescricao(novoBrinquedoDto.getDescricao());
-        brinquedo.setPreco(novoBrinquedoDto.getPreco());
-        try{
-            brinquedo.setImagem(novoBrinquedoDto.getImagem().getBytes());
-        } catch(Exception e){
-            e.printStackTrace();
+        brinquedo.setCategoria(categoriaService.getCategoriaById(brinquedoAtualizadoDto.getIdCategoria()));
+        brinquedo.setNome(brinquedoAtualizadoDto.getNome());
+        brinquedo.setDescricao(brinquedoAtualizadoDto.getDescricao());
+        brinquedo.setPreco(brinquedoAtualizadoDto.getPreco());
+        if(!brinquedoAtualizadoDto.getImagem().isEmpty()){
+            try{
+                brinquedo.setImagem(brinquedoAtualizadoDto.getImagem().getBytes());
+            } catch(Exception e){
+                e.printStackTrace();
+            }
         }
 
         brinquedoService.salvarBrinquedo(brinquedo);
