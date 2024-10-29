@@ -1,7 +1,5 @@
 package br.com.digitaldevilsaga.dto;
 
-
-
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
 
 public class BrinquedoDto {

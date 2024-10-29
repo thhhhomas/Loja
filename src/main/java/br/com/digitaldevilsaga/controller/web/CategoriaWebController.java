@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.digitaldevilsaga.service.BrinquedoCategoriaService;
-import br.com.digitaldevilsaga.service.CategoriaService;
 import br.com.digitaldevilsaga.dto.CategoriaDto;
 
 import java.util.List;

@@ -77,10 +77,20 @@
                         <td align="center" th:text="${brinquedo.categoria.descricao}">Categoria</td>
                         <td align="center" th:text="${brinquedo.preco}">Valor</td>
                         <td align="center">
-                            <a th:href = "@{/admin/brinquedo/editar(id=${brinquedo.id})}">Editar</a> /
-                            <form th:action = "@{/admin/brinquedo/excluir}" method="post">
-                                <input type="hidden" name="id" th:value="${brinquedo.id}"/> 
-                                <button type="submit">Excluir</button></form>
+                            <!-- <a th:href = "@{/admin/brinquedo/editar(id=${brinquedo.id})}">Editar</a> / -->
+                            <div style="display: inline-block; margin-right: 10px;">
+                                <form th:action = "@{/admin/brinquedo/editar(id=${brinquedo.id})}" method="get">
+                                    <input type="hidden" name="id" th:value="${brinquedo.id}"/> 
+                                    <button type="submit">Editar</button>
+                                </form>
+                            </div>
+                            
+                            <div style="display: inline-block;">
+                                <form th:action = "@{/admin/brinquedo/excluir}" method="post">
+                                    <input type="hidden" name="id" th:value="${brinquedo.id}"/> 
+                                    <button type="submit">Excluir</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

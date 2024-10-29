@@ -3,9 +3,6 @@ package br.com.digitaldevilsaga.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.digitaldevilsaga.service.BrinquedoService;
-import br.com.digitaldevilsaga.service.CategoriaService;
-
 import java.util.List;
 import java.util.Base64;
 import java.util.stream.Collectors;
@@ -13,21 +10,21 @@ import br.com.digitaldevilsaga.dto.BrinquedoDto;
 import br.com.digitaldevilsaga.dto.CategoriaDto;
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
 import br.com.digitaldevilsaga.model.entity.Categoria;
-import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
 import br.com.digitaldevilsaga.dto.NovoBrinquedoDto;
 import br.com.digitaldevilsaga.dto.BrinquedoAtualizadoDto;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class BrinquedoCategoriaService {
 
     private final BrinquedoService brinquedoService;
     private final CategoriaService categoriaService;
+    private final ImagemService imagemService;
 
     @Autowired
-    public BrinquedoCategoriaService(BrinquedoService brinquedoService, CategoriaService categoriaService){
+    public BrinquedoCategoriaService(BrinquedoService brinquedoService, CategoriaService categoriaService, ImagemService imagemService){
         this.brinquedoService = brinquedoService;
         this.categoriaService = categoriaService;
+        this.imagemService = imagemService;
     }
 
     public List<BrinquedoDto> listarBrinquedoByCategoriaDescricao(String desc){
@@ -51,7 +48,17 @@ public class BrinquedoCategoriaService {
     public List<CategoriaDto> listarCategorias(){
         List<Categoria> categorias = categoriaService.listarCategorias();
         List<CategoriaDto> categoriasComImagens = categorias.stream().map(categoria -> {
-            String imagemBase64 = Base64.getEncoder().encodeToString(brinquedoService.randomBrinquedoByCategoriaId(categoria.getId()).getImagem());
+            String imagemBase64 = "";
+            if(brinquedoService.randomBrinquedoByCategoriaId(categoria.getId()) == null){
+                try{
+                    imagemBase64 = imagemService.imagemPadraoBase64();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            else{
+                imagemBase64 = Base64.getEncoder().encodeToString(brinquedoService.randomBrinquedoByCategoriaId(categoria.getId()).getImagem());
+            }
             Long quantidadebrinquedos = categoriaService.contarBrinquedosById(categoria.getId());
             return new CategoriaDto(categoria, imagemBase64, quantidadebrinquedos);
         }).collect(Collectors.toList());

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -13,19 +12,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.digitaldevilsaga.service.BrinquedoService;
 import br.com.digitaldevilsaga.service.CategoriaService;
 import br.com.digitaldevilsaga.service.BrinquedoCategoriaService;
-import br.com.digitaldevilsaga.dto.BrinquedoDto;
 import br.com.digitaldevilsaga.dto.CategoriaDto;
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
 
 import br.com.digitaldevilsaga.dto.NovoBrinquedoDto;
 
-import br.com.digitaldevilsaga.model.repository.BrinquedoRepository;
-import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
-
 import java.util.List;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.digitaldevilsaga.dto.BrinquedoAtualizadoDto;
+import br.com.digitaldevilsaga.dto.CategoriaAtualizadaDto;
 import br.com.digitaldevilsaga.dto.NovaCategoriaDto;
 
 @Controller
@@ -59,8 +55,6 @@ public class AdminWebController {
 
         return "admbrinquedo";
     }
-
-    
 
     @GetMapping("/brinquedo/novo")
     public String novoBrinquedoForm(Model model) {
@@ -115,11 +109,39 @@ public class AdminWebController {
     @PostMapping("/categoria/adicionar")
     public String adicionarCategoria(@ModelAttribute NovaCategoriaDto novaCategoria) {
         try {
-            
+            categoriaService.salvarCategoria(novaCategoria);
         } catch (Exception e) {
             
         }
         return "redirect:/admin/brinquedo"; // Redireciona para a página de listagem de brinquedos
     }  
     
+    @GetMapping("/categoria/novo")
+    public String novaCategoriaForm(Model model) {
+        return "novacategoria";
+    }
+
+    @PostMapping("/categoria/excluir")
+    public String excluirCategoria(@RequestParam ("id") Integer id, RedirectAttributes redirectAttributes) {
+        try{
+            categoriaService.excluirCategoria(id);
+            redirectAttributes.addFlashAttribute("mensagem", "categoria excluída com sucesso!");
+        } catch(Exception e){
+            redirectAttributes.addFlashAttribute("erro", "Erro ao excluir a categoria.");
+        }
+        return "redirect:/admin/categoria";
+    }
+
+    @PostMapping("/categoria/salvar")
+    public String editarCategoria(@ModelAttribute CategoriaAtualizadaDto categoriaAtualizadaDto) {
+        categoriaService.atualizarcategoria(categoriaAtualizadaDto);
+        
+        return "redirect:/admin/categoria";
+    }
+
+    @GetMapping("/categoria/editar")
+    public String editarCategoriaForm(@RequestParam("id") int id, Model model) {
+        model.addAttribute("categoria", categoriaService.getCategoriaById(id));
+        return "editar-categoria";
+    }
 }

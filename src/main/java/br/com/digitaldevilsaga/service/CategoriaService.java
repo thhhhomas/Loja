@@ -5,13 +5,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
 
-import br.com.digitaldevilsaga.dto.CategoriaDto;
-import br.com.digitaldevilsaga.model.entity.Brinquedo;
 import br.com.digitaldevilsaga.model.entity.Categoria;
 import java.util.List;
-import java.util.Base64;
-import java.util.stream.Collectors;
-import java.util.Optional;
+
+import br.com.digitaldevilsaga.dto.CategoriaAtualizadaDto;
 import br.com.digitaldevilsaga.dto.NovaCategoriaDto;
 
 @Service
@@ -41,5 +38,19 @@ public class CategoriaService {
         Categoria categoria = new Categoria();
 
         categoria.setDescricao(novaCategoria.getDescricao());
+
+        categoriaRepository.save(categoria);
+    }
+
+    public void excluirCategoria(Integer id){
+        categoriaRepository.deleteById(id);
+    }
+
+    public void atualizarcategoria(CategoriaAtualizadaDto categoriaAtualizadaDto){
+        Categoria categoria = this.getCategoriaById(categoriaAtualizadaDto.getId());
+
+        categoria.setDescricao(categoriaAtualizadaDto.getDescricao());
+
+        categoriaRepository.save(categoria);
     }
 }
