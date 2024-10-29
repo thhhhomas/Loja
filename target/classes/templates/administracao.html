@@ -66,13 +66,15 @@
                     Encerrar sessão
                 </a>
             </div>
-            <div style="display: inline-block;">
-                <form th:action = "@{/admin/categoria/excluir}" method="post">
-                    <input type="hidden" name="id" th:value="1"/> 
-                    <button type="submit">Excluir</button>
-                </form>
-            <div th:if="${mensagem}" class="alert alert-warning">
-                <p th:text="${mensagem}"></p>
+            <div class="form-group">
+                <a href="/admin/cadastro/excluir" class="btn">
+                    Excluir conta
+                </a>
+            </div>
+            <div class="form-group">
+                <div th:if="${mensagem}" class="alert alert-warning">
+                    <p th:text="${mensagem}"></p>
+                </div>
             </div>
         </form>
     </div>

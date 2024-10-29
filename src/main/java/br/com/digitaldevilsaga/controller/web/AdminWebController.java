@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import br.com.digitaldevilsaga.service.BrinquedoService;
 import br.com.digitaldevilsaga.service.CategoriaService;
 import br.com.digitaldevilsaga.service.AdminService;
@@ -51,12 +53,6 @@ public class AdminWebController {
 
     @GetMapping("/administracao")
     public String adm(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        
-        if (authentication != null && authentication.isAuthenticated()) {
-            String username = authentication.getName();
-            model.addAttribute("username", username);
-        }
         return "administracao";
     }
 
@@ -170,10 +166,22 @@ public class AdminWebController {
         return "redirect:/admin/administracao";
     }
 
-    @PostMapping("/cadastro/excluir")
-    public String excluirCadastro(@RequestParam("nome") String nome){
-        if(!nome.equals("escavadeira")) adminService.excluirbyNome(nome);
+    @GetMapping("/cadastro/excluir")
+    public String excluirCadastro(Model model, RedirectAttributes redirectAttributes){
+        String username = "";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
+        if (authentication != null && authentication.isAuthenticated()) {
+            username = authentication.getName();
+        }
 
-        return "index";
+        if(!username.equals("escavadeira")) {
+            adminService.excluirbyNome(username);
+            return "redirect:/admin/login";
+        }
+        else {
+            redirectAttributes.addFlashAttribute("mensagem", "Você não tem permissão para excluir essa conta");
+            return "redirect:/admin/administracao";
+        }
     }
 }
