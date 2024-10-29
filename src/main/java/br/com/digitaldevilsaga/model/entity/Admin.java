@@ -16,7 +16,7 @@ public class Admin {
     private int id;
 
     @Column(name="nome", nullable = false)
-    private String nome;
+    private String nome;    
 
     @Column(name="senha", nullable = false)
     private String senha;

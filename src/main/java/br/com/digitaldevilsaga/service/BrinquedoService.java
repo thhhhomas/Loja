@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.digitaldevilsaga.dto.BrinquedoDto;
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
 import br.com.digitaldevilsaga.model.entity.Categoria;
-import br.com.digitaldevilsaga.model.repository.BrinquedoRepository;
+import br.com.digitaldevilsaga.repository.BrinquedoRepository;
 
 @Service
 public class BrinquedoService {

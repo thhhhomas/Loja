@@ -3,9 +3,9 @@ package br.com.digitaldevilsaga.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.digitaldevilsaga.model.repository.CategoriaRepository;
-
 import br.com.digitaldevilsaga.model.entity.Categoria;
+import br.com.digitaldevilsaga.repository.CategoriaRepository;
+
 import java.util.List;
 
 import br.com.digitaldevilsaga.dto.CategoriaAtualizadaDto;

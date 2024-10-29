@@ -1,4 +1,4 @@
-package br.com.digitaldevilsaga.model.repository;
+package br.com.digitaldevilsaga.repository;
 
 import java.util.List;
 

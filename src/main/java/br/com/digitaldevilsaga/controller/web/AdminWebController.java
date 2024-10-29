@@ -1,8 +1,11 @@
 package br.com.digitaldevilsaga.controller.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,10 +14,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.digitaldevilsaga.service.BrinquedoService;
 import br.com.digitaldevilsaga.service.CategoriaService;
+import br.com.digitaldevilsaga.service.AdminService;
 import br.com.digitaldevilsaga.service.BrinquedoCategoriaService;
 import br.com.digitaldevilsaga.dto.CategoriaDto;
 import br.com.digitaldevilsaga.model.entity.Brinquedo;
-
 import br.com.digitaldevilsaga.dto.NovoBrinquedoDto;
 
 import java.util.List;
@@ -23,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import br.com.digitaldevilsaga.dto.BrinquedoAtualizadoDto;
 import br.com.digitaldevilsaga.dto.CategoriaAtualizadaDto;
 import br.com.digitaldevilsaga.dto.NovaCategoriaDto;
+import br.com.digitaldevilsaga.dto.NovoAdministradorDto;
+import org.springframework.security.core.Authentication;
 
 @Controller
 @RequestMapping("/admin")
@@ -37,6 +42,8 @@ public class AdminWebController {
     @Autowired
     private BrinquedoCategoriaService brinquedoCategoriaService;
 
+    @Autowired AdminService adminService;
+
     @GetMapping("/login")
     public String loginAdmin(Model model){
         return "login";
@@ -44,6 +51,12 @@ public class AdminWebController {
 
     @GetMapping("/administracao")
     public String adm(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
+        if (authentication != null && authentication.isAuthenticated()) {
+            String username = authentication.getName();
+            model.addAttribute("username", username);
+        }
         return "administracao";
     }
 
@@ -122,7 +135,7 @@ public class AdminWebController {
     }
 
     @PostMapping("/categoria/excluir")
-    public String excluirCategoria(@RequestParam ("id") Integer id, RedirectAttributes redirectAttributes) {
+    public String excluirCategoria(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes) {
         try{
             categoriaService.excluirCategoria(id);
             redirectAttributes.addFlashAttribute("mensagem", "categoria excluída com sucesso!");
@@ -143,5 +156,24 @@ public class AdminWebController {
     public String editarCategoriaForm(@RequestParam("id") int id, Model model) {
         model.addAttribute("categoria", categoriaService.getCategoriaById(id));
         return "editar-categoria";
+    }
+
+    @GetMapping("/cadastro/novo")
+    public String novoCadastroForm(Model model) {
+        return "novoadministrador";
+    }
+    
+    @PostMapping("/cadastro/adicionar")
+    public String adicionarCadastro(@ModelAttribute NovoAdministradorDto novoAdministrador) {
+        adminService.save(novoAdministrador); 
+
+        return "redirect:/admin/administracao";
+    }
+
+    @PostMapping("/cadastro/excluir")
+    public String excluirCadastro(@RequestParam("nome") String nome){
+        if(!nome.equals("escavadeira")) adminService.excluirbyNome(nome);
+
+        return "index";
     }
 }

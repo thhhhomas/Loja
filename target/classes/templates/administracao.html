@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,6 +55,24 @@
                 <a href="/admin/brinquedo" class="btn">
                     Brinquedo
                 </a>
+            </div>
+            <div class="form-group">
+                <a href="/admin/cadastro/novo" class="btn">
+                    Cadastrar Administrador
+                </a>
+            </div>
+            <div class="form-group">
+                <a href="/logout?" class="btn">
+                    Encerrar sessão
+                </a>
+            </div>
+            <div style="display: inline-block;">
+                <form th:action = "@{/admin/categoria/excluir}" method="post">
+                    <input type="hidden" name="id" th:value="1"/> 
+                    <button type="submit">Excluir</button>
+                </form>
+            <div th:if="${mensagem}" class="alert alert-warning">
+                <p th:text="${mensagem}"></p>
             </div>
         </form>
     </div>
