@@ -3,6 +3,9 @@ package br.com.digitaldevilsaga.model.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -27,8 +30,8 @@ public class Brinquedo {
     @Column(name="descricao", nullable=true)
     private String descricao;
     
-    @Column(name="preco", nullable=true)
-    private double preco;
+    @Column(name="preco", nullable=true, precision=10, scale=2)
+    private BigDecimal preco;
 
     @Lob
     @Column(name="imagem", columnDefinition = "LONGBLOB")
@@ -76,11 +79,11 @@ public class Brinquedo {
         return categoria;
     }
 
-    public void setPreco(double preco){
+    public void setPreco(BigDecimal preco){
         this.preco = preco;
     }
 
-    public double getPreco(){
+    public BigDecimal getPreco(){
         return preco;
     }
 }

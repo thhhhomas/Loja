@@ -65,6 +65,26 @@ public class BrinquedoCategoriaService {
         return categoriasComImagens;
     }
 
+    public List<CategoriaDto> listarCategorias(String pesquisa){
+        List<Categoria> categorias = categoriaService.listaCategorias(pesquisa);
+        List<CategoriaDto> categoriasComImagens = categorias.stream().map(categoria -> {
+            String imagemBase64 = "";
+            if(brinquedoService.randomBrinquedoByCategoriaId(categoria.getId()) == null){
+                try{
+                    imagemBase64 = imagemService.imagemPadraoBase64();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            else{
+                imagemBase64 = Base64.getEncoder().encodeToString(brinquedoService.randomBrinquedoByCategoriaId(categoria.getId()).getImagem());
+            }
+            Long quantidadebrinquedos = categoriaService.contarBrinquedosById(categoria.getId());
+            return new CategoriaDto(categoria, imagemBase64, quantidadebrinquedos);
+        }).collect(Collectors.toList());
+        return categoriasComImagens;
+    }
+
     public void salvarBrinquedo(NovoBrinquedoDto novoBrinquedoDto){
         Brinquedo brinquedo = new Brinquedo();
 

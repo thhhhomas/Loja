@@ -20,6 +20,10 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
+    public List<Categoria> listaCategorias(String pesquisa){
+        return categoriaRepository.findByDescricaoContains(pesquisa);
+    }
+
     public Categoria getCategoriaByDescricao(String desc){
         Categoria categoria = categoriaRepository.findByDescricao(desc);
 

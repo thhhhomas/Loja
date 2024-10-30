@@ -1,4 +1,6 @@
 package br.com.digitaldevilsaga.dto;
+import java.math.BigDecimal;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class BrinquedoAtualizadoDto {
@@ -6,7 +8,7 @@ public class BrinquedoAtualizadoDto {
     private String nome;
     private String descricao;
     private Integer idCategoria;
-    private double preco;
+    private BigDecimal preco;
     private MultipartFile imagem;
 
     public int getId(){
@@ -40,11 +42,11 @@ public class BrinquedoAtualizadoDto {
         this.idCategoria = idCategoria;
     }
 
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(double valor) {
+    public void setPreco(BigDecimal valor) {
         this.preco = valor;
     }
 

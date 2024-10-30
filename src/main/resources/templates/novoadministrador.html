@@ -1,66 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Loja de Brinquedos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne+Mono&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div>
-        <table width="80%"> 
-            <tr>
-                <td>
-                    <a href="/brinquedos/home">
-                        <img src="Imagens/logo.png" width="100" height="100">
-                    </a>
-                </td>
-                <td>
-                    <a href="/brinquedos/home">
-                        <h1 align="center">Loja de Brinquedos</h1> 
-                    </a>
-                    
-                </td> 
-            </tr>
-        </table>   
-    </div>
-     
+    <input type="checkbox" id="hamburger-toggle" class="hamburger-toggle">
+    <label for="hamburger-toggle" class="hamburger-icon">&#9776;</label>
+
+
+    <div class="grid-container">
+        
+        <!-- Menu lateral & Página de Teste 2!!!!!!-->
+        <div class="menu">
+            <a href="/brinquedos/home">
+                <img src="/images/logo.png" alt="logo" class="logo"> <!--wdth 150 e height 150-->
+            </a>
+            <ul>
+                <li><a href="/brinquedos/home">Home</a></li>
+                <li><a href="/categorias/home">Catálogo</a></li>
+                <li><a href="/admin/administracao">Administração</a></li>
+                <li><a href="/sobre/equipe">Sobre</a></li>
+            </ul>
+        </div>
+        
+
+        <!-- Cabeçalho -->
+        <div class="header">
+            <a href="/brinquedos/home">
+                <h1>Digital Devil Saga</h1>
+            </a>
+        </div>
     <hr>
 
-    <div>
-        <h2>Menu Principal</h2>
-        <menu>
-            <a href="/brinquedos/home">
-                <li>Home</li>
-            </a>
-            <a href="categorias.html">
-                <li>Catálogos de Brinquedos</li>
-            </a>
-            <a href="administracao.html">
-                <li>Administração</li>
-            </a>
-            <a href="sobre.html">
-                <li>Sobre a Equipe</li>
-            </a>
+    <div class="editarbrinquedo"></h1>
+
+    <form action="/admin/cadastro/adicionar" method="post" enctype="multipart/form-data">
+        Nome: <input type="text" name="nome" required/>
+        <br>
+        senha: <input type="password" name="senha" required/>
+        <br>
+        <input type="submit" name="salvar" value="Salvar Dados">
+    </form>
             
-        </menu>
+        </div>
     </div>
 
-    
-
-    <div>
-        <h3>Catálogo de Brinquedos :: Novo Brinquedo</h3>
-        <hr>
-
-        <form action="/admin/cadastro/adicionar" method="post" enctype="multipart/form-data">
-            <br>
-            Nome: <input type="text" name="nome" required/>
-            <br>
-            senha: <input type="text" name="senha" required/>
-            <br>
-            <input type="submit" name="salvar" value="Salvar Dados">
-        </form>
-        
-    </div>
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

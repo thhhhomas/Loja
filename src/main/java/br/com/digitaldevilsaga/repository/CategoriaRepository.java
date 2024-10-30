@@ -5,10 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import br.com.digitaldevilsaga.model.entity.Categoria;
+import java.util.List;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
     Categoria findByDescricao(String descricao);
 
     @Query("SELECT COUNT(b) FROM Brinquedo b WHERE b.categoria.id = :idCategoria")
     Long countBrinquedosByCategoriaId(@Param("idCategoria") Integer idCategoria);
+
+    List<Categoria> findByDescricaoContains(String pesquisa);
 }
